@@ -2,7 +2,7 @@
 
 Documenting various code examples created while learning Go
 
-| Directory     | Purpose                          |
+| Directory     | Description                      |
 | ------------- |-------------                     |
 | ascii         | Displaying ascii art in terminal |
 | bitcoin       | Bitcoin tools/examples           |
