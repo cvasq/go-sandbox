@@ -18,7 +18,7 @@ func init() {
 }
 
 var RootCmd = &cobra.Command{
-	Use: "cobra-cli",
+	Use: "testctl",
 	Run: func(cmd *cobra.Command, args []string) {
 		if Verbose {
 			fmt.Println("Running in Verbose mode...")

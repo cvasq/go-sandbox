@@ -3,15 +3,15 @@
 A usage example of the Cobra CLI tool builder
 
 ```
-go build .
+go build -o ./testctl
 ```
 
 ```
-$ ./cobra-cli -h
+$ ./testctl -h
 
 Usage:
-  cobra-cli [flags]
-  cobra-cli [command]
+  testctl [flags]
+  testctl [command]
 
 Available Commands:
   add-user    Add a new user
@@ -19,28 +19,28 @@ Available Commands:
 
 Flags:
   -d, --dryrun    Dry run
-  -h, --help      Help for cobra-cli
+  -h, --help      Help for testctl
   -v, --verbose   Verbose output
 
-Use "cobra-cli [command] --help" for more information about a command.
+Use "testctl [command] --help" for more information about a command.
 ```
 
 ```
-$ ./cobra-cli add-user cvasquez
+$ ./testctl add-user cvasquez
 [+] Added user: cvasquez
 ```
 
 ```
-$ ./cobra-cli add-user cvasquez -d
+$ ./testctl add-user cvasquez -d
 [Dry-Run] Added user: cvasquez
 ```
 
 ```
-$ ./cobra-cli add-user cvasquez -v    
+$ ./testctl add-user cvasquez -v    
 [Verbose] Creating a new user: cvasquez
 [+] Added user: cvasquez
 ```
 ```
-$ ./cobra-cli add-user            
+$ ./testctl add-user            
 Error: requires at least 1 arg(s), only received 0
 ```
