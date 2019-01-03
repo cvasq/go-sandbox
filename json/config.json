@@ -1,0 +1,14 @@
+[                                                                                                                                                 
+   {                                                                                                                                                          
+      "host":"host1.cobranix.com",                                                                                                                       
+      "username":"ubuntu",                                                                                                                                    
+      "key":"~/Downloads/thinkpad2018.pem",                                                                                                                   
+      "urlMatch":"facebook.com"                                                                                                                             
+   },                                                                                                                                                         
+   {                                                                                                                                                          
+      "host":"host2.cobranix.com.com",                                                                                                                       
+      "username":"ubuntu",                                                                                                                                    
+      "key":"~/Downloads/thinkpad2018.pem",                                                                                                                   
+      "urlMatch":"twitter.com"                                                                                                                             
+   }                                                                                                                                                          
+]
