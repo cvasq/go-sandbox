@@ -10,7 +10,7 @@ Documenting various code examples created while learning Go
 | cobra-cli     | Cobra-CLI Usage example          |
 | csv           | CSV Examples                     |
 | hashing       | Hashing with Go                  |
-| hello-world   | Basic Hello World                |
+| hello-world   | Basic Hello World with test      |
 | http          | HTTP/S in Go                     |
 | json          | JSON Marshall/Unmarshal          |
 | random-data   | Generate random data             |
