@@ -1,4 +1,5 @@
-## Go Sandbox
+## Go Sandbox  ![icon](https://github.com/cvasq/go-sandbox/blob/master/icon.png)
+
 
 Documenting various code examples created while learning Go
 
