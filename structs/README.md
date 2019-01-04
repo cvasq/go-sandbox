@@ -35,7 +35,7 @@ Street: 53 Industrial Park
 Zipcode: 21520
 ```
 
-**struct_constructor.go** - Using a constructor which returns a pointer
+**struct_constructor.go** - Using a constructor function which returns a pointer to a struct
 ```
 $ go run struct_constructor.go
 
