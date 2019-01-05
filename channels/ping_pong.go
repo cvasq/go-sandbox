@@ -26,15 +26,17 @@ func player(name string, table chan *Ball) {
 
 func main() {
 
+	// table channel is used to pass the ball
 	table := make(chan *Ball)
 
 	go player("ping", table)
 	go player("pong", table)
 
-	fmt.Println("game starts in 1 seconds...")
+	fmt.Println("Game starts in 1 second...")
 	time.Sleep(1 * time.Second)
 
 	table <- new(Ball)
 
+	// Game ends after 4 seconds
 	time.Sleep(4 * time.Second)
 }
