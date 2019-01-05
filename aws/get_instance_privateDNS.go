@@ -27,8 +27,9 @@ func NewClient() *API {
 
 }
 
-// GetInstancePrivateDNS returns a slice containing all running instance IDs
+// GetInstancePrivateDNS takes an instance ID and returns the private DNS name
 func (a *API) GetInstancePrivateDNS(instanceID string) string {
+
 	params := &ec2.DescribeInstancesInput{
 		InstanceIds: []*string{
 			aws.String(instanceID),
@@ -36,7 +37,9 @@ func (a *API) GetInstancePrivateDNS(instanceID string) string {
 	}
 
 	result, err := a.client.DescribeInstances(params)
+
 	var privateDNSname string
+
 	if err != nil {
 		fmt.Println("Error", err)
 		os.Exit(1)
