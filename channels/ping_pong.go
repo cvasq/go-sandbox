@@ -1,3 +1,6 @@
+// Launches 2 goroutines, one for each player
+// A 'table' channel is created for communicating the ball
+
 package main
 
 import (
@@ -10,6 +13,7 @@ type Ball struct {
 }
 
 func player(name string, table chan *Ball) {
+
 	for {
 		ball := <-table
 		ball.hits++
@@ -21,13 +25,16 @@ func player(name string, table chan *Ball) {
 }
 
 func main() {
+
 	table := make(chan *Ball)
+
 	go player("ping", table)
 	go player("pong", table)
 
 	fmt.Println("game starts in 1 seconds...")
 	time.Sleep(1 * time.Second)
+
 	table <- new(Ball)
+
 	time.Sleep(4 * time.Second)
-	//close(table)
 }
