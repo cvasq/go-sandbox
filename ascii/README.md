@@ -1,7 +1,9 @@
-## Displaying ASCII art with Go
+## ASCII
+
+#### Displaying ASCII art with Go
 
 ```
-go run asciiart.go
+$ go run ascii_art.go
 ```
 
 ```
@@ -33,3 +35,22 @@ go run asciiart.go
 
 
 ```
+
+
+#### Creating ASCII tables
+
+```
+$ go run ascii_table.go
+```
+
+```
++-------------------+-----+----------------+--------+
+|       NAME        | AGE |      CITY      | GENDER |
++-------------------+-----+----------------+--------+
+| Serj Tankian      |  51 | Los Angeles    | Male   |
+| Daron Malakian    |  43 | Canyon Country | Male   |
+| Shavarsh Odadjian |  44 | Los Angeles    | Male   |
+| John Dolmayan     |  45 | Los Angeles    | Male   |
++-------------------+-----+----------------+--------+
+```
+
