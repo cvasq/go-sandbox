@@ -1,3 +1,5 @@
+// Usage of nested structs and promoted fields
+
 package main
 
 import (
