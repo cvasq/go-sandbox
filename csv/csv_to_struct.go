@@ -1,4 +1,4 @@
-// Read CSV data to struct
+// Reading a CSV file to a struct
 
 package main
 
