@@ -4,7 +4,7 @@ Documenting various code examples created while learning Go
 
 | Directory     | Description                      |
 | ------------- |-------------                     |
-| ascii         | Displaying ascii art in terminal |
+| ascii         | Displaying ascii art and tables  |
 | aws           | Working with the AWS API         |
 | bitcoin       | Bitcoin tools/examples           |
 | channels      | Using Go Channels                |
