@@ -58,7 +58,7 @@ Output Binary: protobuf_person_unmarshal
 
 #### Run
 
-Data is marshalled in the first binary and unmarshalled in the second binary:
+Data is marshalled in the first executable and unmarshalled in the second executable:
 
 ```
 $ ./protobuf_person_marshal --name "Carlos" --age 27 | ./protobuf_person_unmarshal
