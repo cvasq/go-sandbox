@@ -47,7 +47,7 @@ Output Binary: protobuf_person_marshal
 
 #### Unmarshalling 
 
-The *protobuf_person_unmarshal.go* example will read data from STDIN and attempt to unmarshall it to a 'Person' data struct type.
+The *protobuf_person_unmarshal.go* example will read data from STDIN and attempt to unmarshal it to a 'Person' data struct type.
 
 Build
 ```
