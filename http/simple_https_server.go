@@ -1,6 +1,8 @@
-// A simple web server created with the net/http package
+// A simple HTTPS web server created with the net/http package
 // Returns the message specified in the URL query string
-// eg. http://localhost:8080/?message=Hello
+//
+// Test with curl
+// curl -k https://localhost:8080/?message=Hello
 
 package main
 
@@ -26,9 +28,10 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", rootHandler)
 
-	log.Println("Listening for HTTP connections on port:", listeningPort)
+	log.Println("Listening for HTTPS connections on port:", listeningPort)
 
-	err := http.ListenAndServe(":"+listeningPort, nil)
+	err := http.ListenAndServeTLS(":"+listeningPort, "selfsigned-x509.crt", "selfsigned.key.pem", nil)
+
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
