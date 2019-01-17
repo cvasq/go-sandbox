@@ -1,4 +1,10 @@
-// List Deployments in the default namespace
+// Lists all deployments in a namespace
+// Options:
+//   --namespace NAMESPACE (optional)
+//   --all-namespaces (optional)
+//   --kubeconfig PATH_TO_CONFIG (optional)
+//
+// Resources:
 // https://github.com/kubernetes/client-go/tree/master/examples
 
 package main
@@ -6,42 +12,55 @@ package main
 import (
 	"flag"
 	"fmt"
-	"path/filepath"
+	"log"
+	"os"
 
 	apiv1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 	"k8s.io/client-go/tools/clientcmd"
-	"k8s.io/client-go/util/homedir"
 )
 
 func main() {
-	var kubeconfig *string
-	if home := homedir.HomeDir(); home != "" {
-		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
-	} else {
-		kubeconfig = flag.String("kubeconfig", "", "absolute path to the kubeconfig file")
-	}
+
+	defaultKubeConfigFile := fmt.Sprintf("%v/.kube/config", os.Getenv("HOME"))
+
+	kubeConfigFile := flag.String("kubeconfig", defaultKubeConfigFile, "Absolute path to the kubeconfig file")
+	namespace := flag.String("namespace", "default", "Namespace to target")
+	allNamespaces := flag.Bool("all-namespaces", false, "Target all namespaces")
 	flag.Parse()
 
-	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
-	if err != nil {
-		panic(err)
+	if *allNamespaces == true {
+		*namespace = apiv1.NamespaceAll
 	}
+
+	config, err := clientcmd.BuildConfigFromFlags("", *kubeConfigFile)
+	if err != nil {
+		log.Fatalln("Error building Kubernetes configuration:", err)
+	}
+
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
-		panic(err)
+		log.Fatal("Error building Kubernetes client", err)
 	}
 
-	deploymentsClient := clientset.AppsV1().Deployments(apiv1.NamespaceDefault)
+	deploymentsClient := clientset.AppsV1().Deployments(*namespace)
 
-	fmt.Printf("Listing deployments in namespace %q:\n", apiv1.NamespaceDefault)
+	getTargetNamespace := func() string {
+		if *namespace == apiv1.NamespaceAll {
+			return "All Namespaces"
+		}
+		return *namespace
+	}
+
+	fmt.Println("Listing deployments in namespace:", getTargetNamespace())
+
 	list, err := deploymentsClient.List(metav1.ListOptions{})
 	if err != nil {
 		panic(err)
 	}
 	for _, d := range list.Items {
-		fmt.Printf(" * %s (%d replicas)\n", d.Name, *d.Spec.Replicas)
+		fmt.Printf(" - %s (%d out of %d Available Replicas)\n", d.Name, d.Status.AvailableReplicas, *d.Spec.Replicas)
 	}
 }
