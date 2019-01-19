@@ -1,6 +1,8 @@
 ## Using regex in Go
 
-**email_validator.go** - Email address validator using regex package
+**replace_string.go** - Replacing a word in a sample string
+
+**email_validator.go** - Email address validator using regexp package
 
 Example usage:
 
@@ -22,4 +24,5 @@ Not a valid email address:  testinggmail.com
 $ ./evalidator test@gmail.com  
 Valid email address:  test@gmail.com
 ```
+
 
