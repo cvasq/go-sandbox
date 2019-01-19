@@ -1,6 +1,6 @@
 ## Generating random data
 
-* **random_silly_names.go** - Generates usernames
+**random_silly_names.go** - Generates usernames
 ```
 $ go run random_silly_names.go
 Armrowan                                                                                  
@@ -12,3 +12,10 @@ Scribequill
 Spiderhate  
 Dogregal
 ```
+
+**random_id.go** - Generates a random globally unique id
+```
+$ go run random-data/random_id.go 
+bh1bvks7uh39bstf5uig
+```
+

@@ -42,7 +42,7 @@ func main() {
 
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
-		log.Fatal("Error building Kubernetes client", err)
+		log.Fatalln("Error building Kubernetes client", err)
 	}
 
 	deploymentsClient := clientset.AppsV1().Deployments(*namespace)

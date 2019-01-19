@@ -2,6 +2,14 @@
 
 Examples:
 
+**http_client.go** - A basic HTTP client executing a GET request to google.com
+
+```
+go run http_client.go
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en"><head><meta content="Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for." name="description"><meta content="noodp" name="robots"><meta content="text/html; 
+...
+```
+
 **simple_http_server.go** - A simple HTTP server with basic logging
 
 Run the HTTP server
@@ -33,5 +41,32 @@ $ go run simple_https_server.go
 ```
 $ curl -k "https://localhost:8080/?message=Sup"
 {"Message":"Sup"}
+```
+
+**gorilla_mux_url_router.go** - Using the gorilla/mux http url router
+
+Running the server
+```
+ go run gorilla_mux_routing.go
+2019/01/18 21:01:48 Listening for HTTP connections on port: 8080
+2019/01/18 21:01:48 /
+2019/01/18 21:02:05 /list-users
+...
+```
+
+Testing the endpoints
+```
+$ curl localhost:8080/
+Endpoints:
+
+// List all users
+curl localhost:8080/list-users
+
+// Get user name by ID
+curl localhost:8080/get-user/id/bh0kkf47uh3blslo4t80
+
+// Add new user
+curl -X POST "http://localhost:8080/add-user/?first=Bill&last=Nye&age=35"
+
 ```
 
