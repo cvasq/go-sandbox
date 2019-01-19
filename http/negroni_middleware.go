@@ -4,10 +4,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/urfave/negroni"
 )
+
+const listeningPort = "8080"
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -23,5 +26,9 @@ func main() {
 
 	negroniHandler.UseHandler(m)
 
-	http.ListenAndServe("localhost:3000", negroniHandler)
+	log.Println("Listening for HTTP connections on port:", listeningPort)
+	err := http.ListenAndServe(":"+listeningPort, negroniHandler)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
