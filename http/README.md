@@ -70,3 +70,11 @@ curl -X POST "http://localhost:8080/add-user/?first=Bill&last=Nye&age=35"
 
 ```
 
+**negroni_middleware.go** - Using the negroni middleware package 
+```
+$ go run negroni_middleware.go
+
+[negroni] 2019-01-19T15:16:18-08:00 | 200 |      63.868µs | localhost:3000 | GET /
+[negroni] 2019-01-19T15:16:18-08:00 | 200 |      15.932µs | localhost:3000 | GET /favicon.ico
+```
+
