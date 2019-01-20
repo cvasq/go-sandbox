@@ -15,3 +15,4 @@ intChannel := make(chan int, 10)
 
 * **done_signal_channel.go** - Using a channel to end a 'for' loop
 * **ping_pong.go** - Communicating between 2 goroutines
+* **fizzBuzz_channel.go** - The Fizz Buzz test done with a channel and go routine
