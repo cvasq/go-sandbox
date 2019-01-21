@@ -12,14 +12,19 @@ intChannel := make(chan int, 10)
 
 // Create 'Send only' channel
 intChannel := make(chan<- int)
+```
 
-// Write data to a channel
+Writing / Reading from Channels
+```
+// Write to channel
 intChannel <- 5
 
-// Read data off a channel
+// Read from channel and assign to new var
 myNum := <- intChannel
+```
 
-// Close channel
+Closing channels
+```
 close(intChannel)
 ```
 
