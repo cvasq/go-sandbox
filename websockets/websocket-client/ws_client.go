@@ -14,25 +14,22 @@ func main() {
 
 	log.Printf("Connecting to %v", url)
 
-	s, _, err := websocket.DefaultDialer.Dial(url, nil)
+	ws, _, err := websocket.DefaultDialer.Dial(url, nil)
 	if err != nil {
 		log.Fatal("Dial Error:", err)
 	}
 
-	subscribeLiveTransactions := func() {
-		opMessage := `{"op":"unconfirmed_sub"}`
-		err := s.WriteMessage(websocket.TextMessage, []byte(opMessage))
-		if err != nil {
-			log.Println("Error subscribing to upstream socket:", err)
-			s, _, _ = websocket.DefaultDialer.Dial(url, nil)
-			return
-		}
+	// Subscribe to unconfirmed transaction stream on Websocket conn
+	opMessage := []byte(`{"op":"unconfirmed_sub"}`)
+	err = ws.WriteMessage(websocket.TextMessage, opMessage)
+	if err != nil {
+		log.Println("Error subscribing to upstream socket:", err)
+		ws, _, _ = websocket.DefaultDialer.Dial(url, nil)
+		return
 	}
 
-	subscribeLiveTransactions()
-
-	// Read data from upstream Websocket
-	// Parses JSON and unmarshalls to Message struct type
+	// Read data stream from upstream Websocket connection
+	// Receives JSON objects and Decodes to Message struct type
 	for {
 
 		// The entire transaction message
@@ -41,10 +38,10 @@ func main() {
 		// A subset of the Message struct fields
 		dataOut := &SummarizedTransaction{}
 
-		err = s.ReadJSON(dataIn)
+		err = ws.ReadJSON(dataIn)
 
 		if err != nil {
-			log.Println("read:", err)
+			log.Println("Read Error:", err)
 			return
 		}
 
@@ -77,6 +74,7 @@ func main() {
 			return
 		}
 
+		// Print summarized marshalled object
 		fmt.Println(string(dataOutBytes))
 	}
 
