@@ -23,5 +23,5 @@ Documenting various code examples created while learning Go
 | regex              | Regex in Go                      |
 | slices             | Using slices                     |
 | ssh                | SSH Client in Go                 |
-| structs            | Struct basics                    |
+| structs            | Struct usage basics              |
 | websockets         | Working with Websockets          |
